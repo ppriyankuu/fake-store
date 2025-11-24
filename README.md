@@ -9,6 +9,4 @@ A minimal frontend practice project built with React and TypeScript that fetches
 - Shopping cart (add, remove, update quantity)
 No backend, no database—just pure frontend logic for learning.
 
-[![Alt text](image.png)](./ss/Screenshot_20251124_122352.png)
-
-
+![image.png](./ss/Screenshot_20251124_122352.png)
