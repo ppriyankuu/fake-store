@@ -44,7 +44,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     loading: false,
     error: null,
     currentPage: 1,
-    itemsPerPage: 10,
+    itemsPerPage: 8,
     cart: [],
 
     fetchProductsAndCategories: async () => {

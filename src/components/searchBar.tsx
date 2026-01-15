@@ -10,42 +10,53 @@ export default function SearchBar() {
         resetFilters,
     } = useProductStore();
 
+    const handleReset = () => {
+        setSearchTerm("");
+        resetFilters(); // assumes this resets category to "All"
+    };
+
     return (
-        <div className="mb-6 flex flex-col sm:flex-row gap-3 items-start sm:items-end">
-            <div className="flex-1 max-w-md">
-                <label className="block text-sm font-medium mb-1">Search</label>
+        <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-end">
+            {/* Search Input */}
+            <div className="flex-1 max-w-md w-full">
+                <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
+                    Search
+                </label>
                 <input
+                    id="search"
                     type="text"
-                    placeholder="e.g phone, jewelry..."
+                    placeholder="e.g. phone, jewelry..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="px-4 py-2 border rounded w-full"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                 />
             </div>
 
+            {/* Category Select */}
             <div className="w-full sm:w-48">
-                <label className="block text-sm font-medium mb-1">Category</label>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+                    Category
+                </label>
                 <select
-                    className="px-4 py-2 border rounded w-full"
+                    id="category"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
-                    {
-                        categories.map((category, idx) => (
-                            <option value={category} key={idx}>{category}</option>
-                        ))
-                    }
+                    {categories.map((category) => (
+                        <option value={category} key={category}>
+                            {category}
+                        </option>
+                    ))}
                 </select>
             </div>
 
-            {(searchTerm || selectedCategory !== 'All') && (
-
+            {/* Reset Button */}
+            {(searchTerm || selectedCategory !== "All") && (
                 <button
-                    onClick={() => {
-                        setSearchTerm('');
-                        resetFilters();
-                    }}
-                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 whitespace-nowrap"
+                    type="button"
+                    onClick={handleReset}
+                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
                 >
                     Reset filters
                 </button>
